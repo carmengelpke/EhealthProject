@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public List<float> possiblePosition;
     private Vector2 newPos;
     private Vector2 newPos2;
-    public GameObject Canvas1, Canvas2, CanvasMenu;
+    public GameObject Canvas1, Canvas2, Canvas3, CanvasMenu;
 
     public void awake()
     {
@@ -24,9 +24,16 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, targetPos, speed*Time.deltaTime);
         if (collectedCoins >= 5)
         {
+            if (Random.value > 0.85)
+            {
+                Canvas3.gameObject.SetActive(true);
+            }
+            else
+            {
+                Canvas2.gameObject.SetActive(true);
+            }
             //It would be used to stop the background and coins from scrolling, but the timer doesn't work
             // Time.timeScale = 0; 
-            Canvas2.gameObject.SetActive(true);
             collectedCoins = 0;
         }
     }
